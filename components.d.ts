@@ -10,28 +10,19 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     CanvasForm: typeof import('./src/components/CanvasForm.vue')['default']
-    'CanvasForm copy': typeof import('./src/components/CanvasForm copy.vue')['default']
-    copy: typeof import('./src/components/CanvasForm copy.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElImage: typeof import('element-plus/es')['ElImage']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    Font: typeof import('./src/components/Font.vue')['default']
     Icon: typeof import('./src/components/Icon.vue')['default']
     Input: typeof import('./src/components/Input.vue')['default']
-    Line: typeof import('./src/components/Line.vue')['default']
-    LoadFont: typeof import('./src/components/LoadFont.vue')['default']
-    Select: typeof import('./src/components/Select.vue')['default']
-    SelfInput: typeof import('./src/components/SelfInput.vue')['default']
     Upload: typeof import('./src/components/Upload.vue')['default']
   }
 }

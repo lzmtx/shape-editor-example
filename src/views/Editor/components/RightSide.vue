@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { editorType } from '@/typings'
 import BootomBar from './BootomBar.vue'
-import { useEditorStore } from '@/store/editor'
 import Input from '@/components/Input.vue'
 import Upload from '@/components/Upload.vue'
 import CanvasForm from '@/components/CanvasForm.vue'
-import Select from '@/components/Select.vue'
 import { ElMessage } from 'element-plus'
 
-// import { type shapeEditAttrs } from '../../../../../../src/Shape'
-
 import { shapeEditAttrs } from 'shape-editor/editor'
-import Arrange from './Arrange.vue'
 
 let canvasImg: HTMLImageElement = new Image()
 

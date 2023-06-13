@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { editorType } from '@/typings'
-// import { operationTypeProps } from '../../../../../../src/editor/BaseEditor'
-// import { ShapeKeyType } from '../../../../../../src'
 import type { operationTypeProps, ShapeKeyType } from 'shape-editor/editor'
 import Upload from '@/components/Upload.vue'
 import { ElMessage } from 'element-plus'
@@ -81,18 +79,6 @@ const addImgShape = (val: string) => {
 				<i class="iconfont icon-path" />
 			</div>
 		</ElTooltip>
-		<!-- <div>移动选择工具</div>
-		包含单击，按住后滑动以便多选
-		<div>标尺工具</div>
-		鼠标位置固定，再滑动实时渲染直线，在旁边显示出实际字体大小的像素长度
-		<div>自定义多边形</div>
-		跟随鼠标按下的坐标点，绘制路径，可填充、可描边
-		<div>自由线段</div>
-		自由线段， 不填充，只描边
-		<div>矩形</div>  
-		<div>圆形</div>
-		<div>三角形</div>
-		<div>箭头</div> -->
 	</section>
 </template>
 

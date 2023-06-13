@@ -9,17 +9,10 @@ editor.watch('scale', (value: any) => {
 	scale.value = Math.round(value * 100)
 })
 editor.watch('moveCanvas', () => {
-	// move.value = editor.operationType === 'moveCanvas'
 	move.value = editor.moveCanvas
 })
 
 const switchMove = () => {
-	// if (move.value) {
-	// 	editor.resetOperationType()
-	// } else {
-	// 	editor.operationType = 'moveCanvas'
-	// }
-
 	editor.moveCanvas = !move.value
 }
 const setScale = (value: any) => {

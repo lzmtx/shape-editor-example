@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import { ShapeEditor, Shapes, ShapeKeyType, ShapeConfig } from '../../../../../../src/index'
 import { ShapeEditor, ShapeKeyType, ShapeConfig } from 'shape-editor/editor'
 import { useWindowResize } from '@/hooks/useWindowResize'
 import { useEditorStore } from '@/store/editor'
@@ -235,31 +234,9 @@ watch(
 )
 
 onMounted(() => {
-	/**
-	 * 初始化编辑器之后，就将编辑器中的属性值拿出来，更新到vue中
-	 */
-
-	setTimeout(() => {
-		initEditor()
-		// readLocalStoreSaveToEidtor()
-		// readEditorInfo()
-		initShapes()
-		drawEditor()
-	}, 0)
-
-	/**
-	 * 将editor中需要更新的数据，放入pinia中
-	 * 便于vue去更新
-	 *
-	 * 当前页面中监听对应的 pinia 变化，从而触发 editor 内部的对应更新方法
-	 *
-	 * 能被抽离的：
-	 * 缩放、偏移、选中图形后设置的表单项
-	 * 监听以上更新，就触发editor更新
-	 *
-	 * 新增、删除、更新图形
-	 *
-	 */
+	initEditor()
+	initShapes()
+	drawEditor()
 })
 onBeforeMount(() => {
 	readLocalStoreSaveToEidtor()

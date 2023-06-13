@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { shapeStyleAll } from '../../../../src/Shape'
+import { shapeStyleAll } from 'shape-editor/editor'
 import Input from './Input.vue'
 
 defineProps<{ item: shapeStyleAll }>()
@@ -23,7 +23,7 @@ const changeLineStyle = () => {
 			class="right"
 			show-alpha
 			:model-value="item.fillStyle"
-			@change="val => $emit('update:item', { key: 'fillStyle', val: val || '#ffffff00' })"
+			@change="(val: any) => $emit('update:item', { key: 'fillStyle', val: val || '#ffffff00' })"
 		/>
 	</div>
 	<div class="row">
@@ -32,7 +32,7 @@ const changeLineStyle = () => {
 			class="right"
 			show-alpha
 			:model-value="item.strokeStyle"
-			@change="val => $emit('update:item', { key: 'strokeStyle', val: val || '#ffffff00' })"
+			@change="(val: any) => $emit('update:item', { key: 'strokeStyle', val: val || '#ffffff00' })"
 		/>
 	</div>
 	<div class="row">
@@ -48,7 +48,7 @@ const changeLineStyle = () => {
 			class="right"
 			type="text"
 			:modelValue="item.lineDash"
-			@update:modelValue="val => $emit('update:item', { key: 'lineDash', val })"
+			@update:modelValue="(val: any) => $emit('update:item', { key: 'lineDash', val })"
 		/>
 	</div>
 	<div class="row">
@@ -57,7 +57,7 @@ const changeLineStyle = () => {
 			class="right"
 			type="number"
 			:modelValue="item.lineWidth"
-			@update:modelValue="val => $emit('update:item', { key: 'lineWidth', val })"
+			@update:modelValue="(val: any) => $emit('update:item', { key: 'lineWidth', val })"
 		/>
 	</div>
 	<div class="row">
@@ -65,7 +65,7 @@ const changeLineStyle = () => {
 		<ElSelect
 			class="select"
 			:model-value="item.lineCap"
-			@change="val => $emit('update:item', { key: 'lineCap', val })"
+			@change="(val: any) => $emit('update:item', { key: 'lineCap', val })"
 		>
 			<ElOption value="butt" label="默认" />
 			<ElOption value="round" label="圆形" />
@@ -77,7 +77,7 @@ const changeLineStyle = () => {
 		<ElSelect
 			class="select"
 			:model-value="item.lineJoin"
-			@change="val => $emit('update:item', { key: 'lineJoin', val })"
+			@change="(val: any) => $emit('update:item', { key: 'lineJoin', val })"
 		>
 			<ElOption value="bevel" label="直角" />
 			<ElOption value="round" label="圆角" />
@@ -90,7 +90,7 @@ const changeLineStyle = () => {
 			class="select"
 			:style="{ '--f': item.font }"
 			:model-value="item.font"
-			@change="val => $emit('update:item', { key: 'font', val })"
+			@change="(val: any) => $emit('update:item', { key: 'font', val })"
 		>
 			<ElOption v-for="(name, i) in fonts" :key="i" :value="name">
 				<div class="font_item" :style="{ '--f': name }">{{ name }}</div>
@@ -103,7 +103,7 @@ const changeLineStyle = () => {
 			class="right"
 			show-alpha
 			:model-value="item.fontColor"
-			@change="val => $emit('update:item', { key: 'fontColor', val: val || '#ffffff00' })"
+			@change="(val: any) => $emit('update:item', { key: 'fontColor', val: val || '#ffffff00' })"
 		/>
 	</div>
 	<div class="row">
@@ -112,7 +112,7 @@ const changeLineStyle = () => {
 			class="right"
 			type="number"
 			:modelValue="item.fontSize"
-			@update:modelValue="val => $emit('update:item', { key: 'fontSize', val })"
+			@update:modelValue="(val: any) => $emit('update:item', { key: 'fontSize', val })"
 		/>
 	</div>
 	<div class="row">
@@ -120,7 +120,7 @@ const changeLineStyle = () => {
 		<ElSelect
 			class="select"
 			:model-value="item.textAlign"
-			@change="val => $emit('update:item', { key: 'textAlign', val })"
+			@change="(val: any) => $emit('update:item', { key: 'textAlign', val })"
 		>
 			<ElOption
 				v-for="(name, i) in ['center', 'end', 'left', 'right', 'start']"
@@ -136,7 +136,7 @@ const changeLineStyle = () => {
 		<ElSelect
 			class="select"
 			:model-value="item.textBaseLine"
-			@change="val => $emit('update:item', { key: 'textBaseLine', val })"
+			@change="(val: any) => $emit('update:item', { key: 'textBaseLine', val })"
 		>
 			<ElOption
 				v-for="(name, i) in [

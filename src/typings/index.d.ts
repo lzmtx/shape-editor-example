@@ -1,4 +1,3 @@
-// import { ShapeEditor } from '../../../../src'
 import { ShapeEditor } from 'shape-editor/editor'
 
 export type editorType = {
