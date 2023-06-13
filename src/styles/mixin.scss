@@ -1,0 +1,75 @@
+/* 公用 flex：水平_垂直 */
+@mixin flex {
+	display: flex;
+}
+
+@mixin flex_end {
+	@include flex();
+	justify-content: flex-end;
+}
+
+@mixin flex_center {
+	@include flex();
+	justify-content: center;
+}
+
+@mixin flex_sb {
+	@include flex();
+	justify-content: space-between;
+}
+
+@mixin flex_sb_center {
+	@include flex();
+	align-items: center;
+	justify-content: space-between;
+}
+
+@mixin flex_sb_start {
+	@include flex();
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+@mixin flex_start_center {
+	@include flex();
+	align-items: center;
+	justify-content: flex-start;
+}
+
+@mixin flex_center_center {
+	@include flex();
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin flex_center_end {
+	@include flex();
+	align-items: flex-end;
+	justify-content: center;
+}
+
+@mixin flex_end_center {
+	@include flex();
+	align-items: center;
+	justify-content: flex-end;
+}
+
+@mixin flex_end_end {
+	@include flex();
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+@mixin el_input_number_no_right_icon {
+	& > :deep(.el-input) {
+		input[type='number']::-webkit-inner-spin-button,
+		input[type='number']::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		input[type='number'] {
+			-moz-appearance: textfield;
+		}
+	}
+}
