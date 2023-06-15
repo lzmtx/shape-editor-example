@@ -4,6 +4,7 @@ import Main from './components/Main.vue'
 import TopBar from './components/TopBar.vue'
 import LeftSide from './components/LeftSide.vue'
 import RightSide from './components/RightSide.vue'
+import { useMainStore } from '@/store/main'
 
 let editor = shallowRef<ShapeEditor | null>(null)
 function updateEditorInstance(instance: ShapeEditor) {
@@ -11,11 +12,12 @@ function updateEditorInstance(instance: ShapeEditor) {
 }
 provide('shapeEditor', { editor: editor, updateEditorInstance })
 
+const mainStore = useMainStore()
+
 // 加载网络字体
 const fonts = ['快看世界体', '得意黑', 'Koulen', 'DIN']
-const fontDomain = 'http://files.varmm.com/font/'
 fonts.forEach(name => {
-	const font = new FontFace(name, `url(${fontDomain}${name}.ttf)`)
+	const font = new FontFace(name, `url(${mainStore.filePath}/fonts/${name}.ttf)`)
 	font.load().then(res => {
 		let _fonts = document.fonts as any
 		_fonts.add(res)

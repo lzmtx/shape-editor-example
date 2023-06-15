@@ -16,11 +16,10 @@ const editor = _editor.value
 const editorData = reactive(
 	editor.filterProxyData(['scale', 'offset', 'moveCanvas', 'selectShapeInfo'])
 )
-console.log('挂载组件：', {...editorData})
 const editorStore = useEditorStore()
 const shapeEditAttrs = ref<shapeEditAttrs | null>(null)
 const isArrange = ref<boolean>(false)
-const canvasImgSrc = ref<string>('')
+const canvasImgSrc = ref<string>(editorStore.canvasImgSrc || '')
 
 type styleKeys = keyof (typeof editorData.shapeStyleMap)['base']
 type attrKeys = keyof shapeEditAttrs
@@ -30,7 +29,6 @@ editorData.currentShapeStyleName = ''
 
 editor.watch('stageWidth', (value: any) => {
 	editorData.stageWidth = value
-	console.log(value)
 	editor.resizeDraw()
 })
 editor.watch('stageHeight', (value: any) => {
@@ -187,9 +185,7 @@ const handleArrange = <T extends Parameters<typeof editor.arrangeAlignment>>(...
 				</div>
 				<div class="row">
 					<span class="label">高度</span>
-					<Input class="col" type="number" v-model="editorData.stageHeight">
-						<template #prefix> 高 </template>
-					</Input>
+					<Input class="col" type="number" v-model="editorData.stageHeight" />
 				</div>
 				<div class="row">
 					<span class="label">底图</span>

@@ -28,7 +28,7 @@ const selectFile = (e: Event) => {
 	const file = input.files[0]
 	uploadImg(file, onProgress)
 		.then(res => {
-			emits('update:img', filePath + res.filename)
+			emits('update:img', filePath + '/imgs/' + res.filename)
 		})
 		.catch(err => {
 			console.log('请求失败：', err)

@@ -57,10 +57,11 @@ const reqShapeEditorConfig = () => {
 		const img = res.shapes.find(shape => shape.shapeType === 'Img' && shape.config.inStage)
 		if (img) {
 			let config = img.config as any
-			console.log(config, config.src)
 			editorStore.setCanvasImgSrc(config.src || '')
 		}
-
+		res.shapes.forEach(item => {
+			delete item.config.matrix
+		})
 		editor.importShapeEditorConfig(res)
 		updateEditorInstance(editor)
 
