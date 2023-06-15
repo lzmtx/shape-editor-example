@@ -50,7 +50,7 @@ export default ({ mode }: ConfigEnv) => {
 			port: 2000,
 			proxy: {
 				[env.VITE_BASE_API]: {
-					target: `http://admin.varmm.com`,
+					target: 'http://varmm.com',
 					changeOrigin: true
 				}
 			}

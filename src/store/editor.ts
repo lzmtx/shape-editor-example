@@ -7,17 +7,35 @@ export const useEditorStore = defineStore(
 		const showRightSide = ref<boolean>(false)
 		const scale = ref(1)
 		const offset = ref({ x: 0, y: 0 })
+		const random = ref<number>(0)
+		const canvasImgSrc = ref<string>('')
 
-		function setScale(num: number) {
+		const setScale = (num: number) => {
 			scale.value = num
 		}
-		function setOffset(x: number, y: number) {
+		const setOffset = (x: number, y: number) => {
 			offset.value = { x, y }
 		}
+		const setRandom = () => {
+			random.value = Math.round(Math.random() * 1000)
+		}
+		const setCanvasImgSrc = (string: string) => {
+			canvasImgSrc.value = string
+		}
 
-		return { scale, offset, showRightSide, setScale, setOffset }
+		return {
+			scale,
+			offset,
+			showRightSide,
+			setScale,
+			setOffset,
+			random,
+			setRandom,
+			canvasImgSrc,
+			setCanvasImgSrc
+		}
 	},
 	{
-		persist: true
+		persist: false
 	}
 )

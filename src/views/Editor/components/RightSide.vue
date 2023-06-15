@@ -7,6 +7,7 @@ import CanvasForm from '@/components/CanvasForm.vue'
 import { ElMessage } from 'element-plus'
 
 import { shapeEditAttrs } from 'shape-editor/editor'
+import { useEditorStore } from '@/store/editor'
 
 let canvasImg: HTMLImageElement = new Image()
 
@@ -15,7 +16,8 @@ const editor = _editor.value
 const editorData = reactive(
 	editor.filterProxyData(['scale', 'offset', 'moveCanvas', 'selectShapeInfo'])
 )
-const useImgSize = ref<boolean>(false)
+console.log('挂载组件：', {...editorData})
+const editorStore = useEditorStore()
 const shapeEditAttrs = ref<shapeEditAttrs | null>(null)
 const isArrange = ref<boolean>(false)
 const canvasImgSrc = ref<string>('')
@@ -28,6 +30,7 @@ editorData.currentShapeStyleName = ''
 
 editor.watch('stageWidth', (value: any) => {
 	editorData.stageWidth = value
+	console.log(value)
 	editor.resizeDraw()
 })
 editor.watch('stageHeight', (value: any) => {
@@ -42,13 +45,16 @@ editor.watch('selectShapeInfo', (value: any) => {
 watch(editorData, () => {
 	editor.updataAll(toRaw(editorData))
 })
-
-const switchSize = () => {
-	useImgSize.value = !useImgSize.value
-	if (useImgSize.value) {
-		updateEditorSize()
+watch(
+	() => editorStore.canvasImgSrc,
+	() => {
+		// 更新画布底图src
+		if (editorStore.canvasImgSrc) {
+			canvasImgSrc.value = editorStore.canvasImgSrc
+		}
 	}
-}
+)
+
 const updateEditorSize = () => {
 	editor.stageWidth = canvasImg.width
 	editor.stageHeight = canvasImg.height
@@ -174,11 +180,6 @@ const handleArrange = <T extends Parameters<typeof editor.arrangeAlignment>>(...
 			<div class="card" v-if="!shapeEditAttrs">
 				<div class="row title">
 					<span class="label">画布设置</span>
-					<ElTooltip content="画布宽高跟随底图大小" placement="top" :show-after="400">
-						<span class="i_btn" :class="{ ac: useImgSize }" @click="switchSize">
-							<i class="iconfont icon-ai70" />
-						</span>
-					</ElTooltip>
 				</div>
 				<div class="row">
 					<span class="label">宽度</span>
@@ -367,7 +368,6 @@ const handleArrange = <T extends Parameters<typeof editor.arrangeAlignment>>(...
 
 		.card {
 			.row {
-				// padding: 6px 10px 6px 14px;
 				padding: 6px 10px;
 				@include flex_sb_center();
 

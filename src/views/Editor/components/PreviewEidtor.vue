@@ -1,5 +1,7 @@
 <script setup lang="ts" name="CNM">
+import { setConfig } from '@/api/editor'
 import Input from '@/components/Input.vue'
+import { ElMessage } from 'element-plus'
 import { PreviewEditor } from 'shape-editor/preview'
 import { JsonViewer } from 'vue3-json-viewer'
 import 'vue3-json-viewer/dist/index.css'
@@ -32,6 +34,8 @@ const initEditor = () => {
 		width: width.value,
 		height: height.value
 	})
+
+	editor.moveCanvas = true
 
 	editor.importShapeEditorConfig({
 		editor: {
@@ -69,7 +73,48 @@ const switchTab = (val: any) => {
 	}
 }
 const uploadConfig = () => {
-	console.log(editor.exportShapeEditorConfig())
+	setConfig(editor.exportShapeEditorConfig()).then(res => {
+		ElMessage({
+			type: 'success',
+			message: '上传成功！'
+		})
+	})
+}
+const updateEditorBoundingRect = () => {
+	if (!canvasRef.value) return
+	const { top, left } = canvasRef.value.getBoundingClientRect()
+	editor.boundingClinetRect = { top, left }
+}
+const onMouseDown = (e: MouseEvent) => {
+	updateEditorBoundingRect()
+	editor?.mousedown(e)
+}
+const onMouseMove = (e: MouseEvent) => {
+	editor?.mousemove(e)
+}
+const onMouseUp = (e: MouseEvent) => {
+	editor?.mouseup()
+}
+const onMouseWheel = (e: WheelEvent) => {
+	updateEditorBoundingRect()
+	e.stopPropagation()
+	e.preventDefault()
+	editor?.mouseWheelScale(e)
+}
+const onTouchStart = (e: TouchEvent) => {
+	updateEditorBoundingRect()
+	e.preventDefault()
+	e.stopPropagation()
+	editor?.touchstart(e)
+}
+const onTouchMove = (e: TouchEvent) => {
+	e.preventDefault()
+	e.stopPropagation()
+	editor?.touchmove(e)
+}
+const onTouchEnd = (e: TouchEvent) => {
+	e.preventDefault()
+	editor?.touchend()
 }
 
 watch(
@@ -172,10 +217,17 @@ onMounted(() => {
 			<canvas
 				v-show="tab === '预览'"
 				ref="canvasRef"
-				:tabindex="0"
+				:tabindex="1"
 				:width="width"
 				:height="height"
 				class="canvas"
+				@mousedown="onMouseDown"
+				@mousemove="onMouseMove"
+				@mouseup="onMouseUp"
+				@wheel.stop="onMouseWheel"
+				@touchstart="onTouchStart"
+				@touchmove="onTouchMove"
+				@touchend="onTouchEnd"
 			/>
 			<JsonViewer
 				v-show="tab === 'JSON'"
