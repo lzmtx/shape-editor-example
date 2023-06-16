@@ -2,15 +2,20 @@
 import { useEditorStore } from '@/store/editor'
 import { editorType } from '@/typings'
 import PreviewEidtor from './PreviewEidtor.vue'
+import { useRouter } from 'vue-router'
 
 const { editor: _editor } = inject('shapeEditor') as editorType
 const editor = _editor.value
 const showPreview = ref<boolean>(false)
 const editorConfig = ref<any>()
+const router = useRouter()
 
 const exportData = () => {
 	editorConfig.value = editor.exportShapeEditorConfig()
 	showPreview.value = true
+}
+const toPreview = () => {
+	window.open(router.resolve('/preview').href, '_blank')
 }
 </script>
 
@@ -35,6 +40,9 @@ const exportData = () => {
 			</ElTooltip>
 		</div>
 		<div class="right">
+			<ElTooltip content="单页预览" placement="bottom">
+				<Icon icon="icon-yulan" @icon-click="toPreview" />
+			</ElTooltip>
 			<ElTooltip content="预览并导出画板配置" placement="bottom">
 				<Icon icon="icon-baocun" @icon-click="exportData" />
 			</ElTooltip>

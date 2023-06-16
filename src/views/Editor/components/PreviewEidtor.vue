@@ -101,6 +101,9 @@ const onMouseWheel = (e: WheelEvent) => {
 	e.preventDefault()
 	editor?.mouseWheelScale(e)
 }
+const onContextmenu = (e: MouseEvent) => {
+	e.preventDefault()
+}
 const onTouchStart = (e: TouchEvent) => {
 	updateEditorBoundingRect()
 	e.preventDefault()
@@ -228,6 +231,7 @@ onMounted(() => {
 				@touchstart="onTouchStart"
 				@touchmove="onTouchMove"
 				@touchend="onTouchEnd"
+				@contextmenu="onContextmenu"
 			/>
 			<JsonViewer
 				v-show="tab === 'JSON'"

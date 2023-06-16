@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 import { setupPinia } from './store'
 
 import './styles/reset.css'
@@ -10,6 +11,8 @@ function install() {
 	const app = createApp(App)
 
 	setupPinia(app)
+
+	app.use(router)
 
 	app.mount('#app')
 }

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Editor from '@/views/Editor/index.vue'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
 	<ElConfigProvider :z-index="2000" :locale="zhCn">
-		<Editor />
+		<RouterView />
 	</ElConfigProvider>
 </template>
 

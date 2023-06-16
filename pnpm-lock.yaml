@@ -19,6 +19,9 @@ dependencies:
   vue:
     specifier: ^3.2.47
     version: 3.2.47
+  vue-router:
+    specifier: ^4.2.2
+    version: 4.2.2(vue@3.2.47)
   vue3-json-viewer:
     specifier: ^2.2.2
     version: 2.2.2(vue@3.2.47)
@@ -2085,6 +2088,15 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
+      vue: 3.2.47
+    dev: false
+
+  /vue-router@4.2.2(vue@3.2.47):
+    resolution: {integrity: sha512-cChBPPmAflgBGmy3tBsjeoe3f3VOSG6naKyY5pjtrqLGbNEXdzCigFUHgBvp9e3ysAtFtEx7OLqcSDh/1Cq2TQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.5.0
       vue: 3.2.47
     dev: false
 
