@@ -118,6 +118,7 @@ const reset = () => {
 			index,
 			state: ''
 		}
+		shapeIndexs.push(index)
 		editor.shapeList[shapeNames[name]].currentShapeStyleName = ''
 	})
 	shapesNameState.value = states
@@ -141,7 +142,7 @@ const randomShape = () => {
 	let shape = editor.shapeList[shapeIndex]
 	shape.currentShapeStyleName = 'red'
 	shapesNameState.value[shape.name].state = 'red'
-	editor.draw()
+	shape.draw(editor.context, editor.getShapeDrawStyle(shape))
 }
 // 加载网络字体
 const fonts = ['快看世界体', '得意黑', 'Koulen', 'DIN']
@@ -183,7 +184,9 @@ onMounted(() => {
 		<ElDialog v-model="showDialog">
 			<div class="dialog">
 				<p>选中图形：{{ selectedShapeNum }}</p>
-				<p>图形状态：{{ shapesNameState[selectedShapeNum].state }}</p>
+				<p v-if="selectedShapeNum">
+					图形状态：{{ shapesNameState[selectedShapeNum].state }}
+				</p>
 			</div>
 		</ElDialog>
 	</section>
