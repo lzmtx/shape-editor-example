@@ -4,12 +4,12 @@ import { useWindowResize } from '@/hooks/useWindowResize'
 import { useMainStore } from '@/store/main'
 import { ElButton, ElDialog } from 'element-plus'
 import { PreviewEditor } from 'shape-editor/preview'
+import { useRouter } from 'vue-router'
 
 let editor: PreviewEditor
 
 let shapeNames: { [name: string]: number } = {}
 let shapeIndexs: number[] = []
-let mocking: boolean = false
 let mockingTimer: number = 0
 
 type stateIndex = { [name: string]: { index: number; state: string } }
@@ -21,6 +21,8 @@ const selectedShapeNum = ref<number>(0)
 const selectedShapeState = ref<string>('')
 const shapesNameState = ref<stateIndex>({})
 const mainStore = useMainStore()
+const router = useRouter()
+const mocking = ref<boolean>(false)
 
 function resizeCallback() {
 	if (!editor) return
@@ -109,7 +111,7 @@ const reqShapeEditorConfig = () => {
 	})
 }
 const reset = () => {
-	mocking = false
+	mocking.value = false
 	clearTimeout(mockingTimer)
 	let states: stateIndex = {}
 	Object.keys(shapeNames).forEach(name => {
@@ -125,11 +127,11 @@ const reset = () => {
 	editor.draw()
 }
 const mock = () => {
-	mocking = true
+	mocking.value = true
 	batchUpdate()
 }
 const batchUpdate = () => {
-	if (!mocking) return
+	if (!mocking.value) return
 	if (!shapeIndexs.length) return
 	mockingTimer = setTimeout(() => {
 		randomShape()
@@ -143,6 +145,9 @@ const randomShape = () => {
 	shape.currentShapeStyleName = 'red'
 	shapesNameState.value[shape.name].state = 'red'
 	shape.draw(editor.context, editor.getShapeDrawStyle(shape))
+}
+const toHome = () => {
+	window.open(router.resolve('/').href, '_self')
 }
 // 加载网络字体
 const fonts = ['快看世界体', '得意黑', 'Koulen', 'DIN']
@@ -162,9 +167,12 @@ onMounted(() => {
 <template>
 	<section class="page">
 		<div class="top">
-			<ElButton @click="reset">复位</ElButton>
-			<ElButton @click="mock">模拟状态更新</ElButton>
-			<ElButton @click="editor.resizeDraw()">缩放画布至屏幕内</ElButton>
+			<div class="home" @click="toHome">图形编辑面板</div>
+			<div class="right">
+				<ElButton @click="reset" v-if="mocking">停止并复位</ElButton>
+				<ElButton @click="mock" v-else>模拟状态更新</ElButton>
+				<ElButton @click="editor.resizeDraw()">缩放画布</ElButton>
+			</div>
 		</div>
 		<canvas
 			ref="canvasRef"
@@ -206,8 +214,17 @@ onMounted(() => {
 		height: 50px;
 		padding: 0 10px;
 		box-sizing: border-box;
-		@include flex_end_center();
-		flex-shrink: 0;
+		@include flex_sb_center();
+
+		.home {
+			padding-left: 10px;
+			font-family: 快看世界体;
+			flex-shrink: 0;
+			cursor: pointer;
+		}
+		.right {
+			@include flex_end_center();
+		}
 	}
 
 	#preview_editor {

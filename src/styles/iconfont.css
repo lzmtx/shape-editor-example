@@ -1,8 +1,8 @@
 @font-face {
 	font-family: 'iconfont'; /* Project id 4078351 */
-	src: url('//at.alicdn.com/t/c/font_4078351_c0tctxsu14p.woff2?t=1686656736166') format('woff2'),
-		url('//at.alicdn.com/t/c/font_4078351_c0tctxsu14p.woff?t=1686656736166') format('woff'),
-		url('//at.alicdn.com/t/c/font_4078351_c0tctxsu14p.ttf?t=1686656736166') format('truetype');
+	src: url('//at.alicdn.com/t/c/font_4078351_eibc2m8qvfv.woff2?t=1686983325961') format('woff2'),
+		url('//at.alicdn.com/t/c/font_4078351_eibc2m8qvfv.woff?t=1686983325961') format('woff'),
+		url('//at.alicdn.com/t/c/font_4078351_eibc2m8qvfv.ttf?t=1686983325961') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,14 @@
 	font-style: normal;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github:before {
+	content: '\f1b4';
+}
+
+.icon-npm:before {
+	content: '\f1fe';
 }
 
 .icon-fanhui2:before {

@@ -2,10 +2,14 @@
 export interface Icon {
 	icon: string
 	active?: boolean
+	size?: number
+	weight?: number
 }
 const props = withDefaults(defineProps<Icon>(), {
 	icon: '',
-	active: false
+	active: false,
+	size: 18,
+	weight: 600
 })
 const emits = defineEmits(['icon-click', 'update:active'])
 const onClick = () => {
@@ -16,7 +20,11 @@ const onClick = () => {
 
 <template>
 	<span class="icon" :class="{ ac_icon: active }" @click="onClick">
-		<i class="iconfont" :class="{ [icon]: true }" />
+		<i
+			class="iconfont"
+			:class="{ [icon]: true }"
+			:style="{ '--size': size + 'px', '--weight': weight }"
+		/>
 	</span>
 </template>
 
@@ -36,7 +44,8 @@ const onClick = () => {
 
 	.iconfont {
 		padding: 4px;
-		font-size: 18px;
+		font-size: var(--size);
+		font-weight: var(--weight, normal);
 	}
 }
 </style>

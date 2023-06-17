@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useEditorStore } from '@/store/editor'
 import { editorType } from '@/typings'
 import PreviewEidtor from './PreviewEidtor.vue'
 import { useRouter } from 'vue-router'
+import Icon from '@/components/Icon.vue'
+import Qrcode from '@/components/Qrcode.vue'
 
 const { editor: _editor } = inject('shapeEditor') as editorType
 const editor = _editor.value
@@ -16,6 +17,12 @@ const exportData = () => {
 }
 const toPreview = () => {
 	window.open(router.resolve('/preview').href, '_blank')
+}
+const toNPM = () => {
+	window.open('https://www.npmjs.com/package/shape-editor', '_blank')
+}
+const toGithub = () => {
+	window.open('https://github.com/lzmtx/shape-editor-example', '_blank')
 }
 </script>
 
@@ -40,11 +47,21 @@ const toPreview = () => {
 			</ElTooltip>
 		</div>
 		<div class="right">
-			<ElTooltip content="单页预览" placement="bottom">
+			<img style="display: none" src="https://files.varmm.com/imgs/editor-preview.png" />
+			<ElTooltip placement="bottom">
 				<Icon icon="icon-yulan" @icon-click="toPreview" />
+				<template #content>
+					<Qrcode />
+				</template>
 			</ElTooltip>
 			<ElTooltip content="预览并导出画板配置" placement="bottom">
 				<Icon icon="icon-baocun" @icon-click="exportData" />
+			</ElTooltip>
+			<ElTooltip content="NPM" placement="bottom">
+				<Icon icon="icon-npm" :size="28" :weight="500" @icon-click="toNPM" />
+			</ElTooltip>
+			<ElTooltip content="Github" placement="bottom">
+				<Icon icon="icon-github" @icon-click="toGithub" />
 			</ElTooltip>
 			<PreviewEidtor :editor-config="editorConfig" v-model="showPreview" />
 		</div>
