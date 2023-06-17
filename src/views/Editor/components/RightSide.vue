@@ -6,7 +6,7 @@ import Upload from '@/components/Upload.vue'
 import CanvasForm from '@/components/CanvasForm.vue'
 import { ElMessage } from 'element-plus'
 
-import { shapeEditAttrs } from 'shape-editor/editor'
+import { shapeEditAttrs } from 'shape-editor/dist/editor'
 import { useEditorStore } from '@/store/editor'
 
 let canvasImg: HTMLImageElement = new Image()

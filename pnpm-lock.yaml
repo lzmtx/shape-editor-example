@@ -14,8 +14,8 @@ dependencies:
     specifier: ^3.1.0
     version: 3.1.0(pinia@2.0.28)
   shape-editor:
-    specifier: ^1.0.0
-    version: 1.0.0
+    specifier: ^1.0.4
+    version: 1.0.4
   vue:
     specifier: ^3.2.47
     version: 3.2.47
@@ -1373,7 +1373,6 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /function-bind@1.1.1:
@@ -1804,7 +1803,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
-    dev: true
 
   /run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
@@ -1835,8 +1833,11 @@ packages:
     hasBin: true
     dev: true
 
-  /shape-editor@1.0.0:
-    resolution: {integrity: sha512-uQVL4viTFYZkK5PCbFOt2qhUJELYQlB6Q2mT1gC+pUn484+caKQ5nj/RQ0NzhO1700zJmxVyyzx08XoMlptaqA==}
+  /shape-editor@1.0.4:
+    resolution: {integrity: sha512-tsdALzEFISz5eqc/UB56WZICBkGRZhWXXYjiQtPGUSMKrVFbcYDP0CdCSv6A3ZjWPqb9a3ILDMRRxDYNomG9HQ==}
+    dependencies:
+      rollup: 3.20.2
+      tslib: 2.5.2
     dev: false
 
   /source-map-js@1.0.2:
@@ -1915,7 +1916,6 @@ packages:
 
   /tslib@2.5.2:
     resolution: {integrity: sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==}
-    dev: true
 
   /typescript@4.9.3:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ShapeEditor } from 'shape-editor/editor'
+import { ShapeEditor } from 'shape-editor/dist/editor'
 import Main from './components/Main.vue'
 import TopBar from './components/TopBar.vue'
 import LeftSide from './components/LeftSide.vue'

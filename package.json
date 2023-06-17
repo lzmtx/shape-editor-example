@@ -13,7 +13,7 @@
 		"element-plus": "^2.3.2",
 		"pinia": "2.0.28",
 		"pinia-plugin-persistedstate": "^3.1.0",
-		"shape-editor": "^1.0.0",
+		"shape-editor": "^1.0.4",
 		"vue": "^3.2.47",
 		"vue-router": "^4.2.2",
 		"vue3-json-viewer": "^2.2.2"

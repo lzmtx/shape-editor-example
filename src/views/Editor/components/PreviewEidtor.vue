@@ -2,7 +2,7 @@
 import { setConfig } from '@/api/editor'
 import Input from '@/components/Input.vue'
 import { ElMessage } from 'element-plus'
-import { PreviewEditor } from 'shape-editor/preview'
+import { PreviewEditor } from 'shape-editor/dist/preview'
 import { JsonViewer } from 'vue3-json-viewer'
 import 'vue3-json-viewer/dist/index.css'
 

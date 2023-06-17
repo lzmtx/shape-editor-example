@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import { ShapeEditor } from 'shape-editor/editor'
-import type { ShapeKeyType, ShapeConfig, copyConfig, ShapeEditorConfig } from 'shape-editor/editor'
+import { ShapeEditor } from 'shape-editor/dist/editor'
+import type { copyConfig } from 'shape-editor/dist/editor'
 import { useWindowResize } from '@/hooks/useWindowResize'
 import { useEditorStore } from '@/store/editor'
 import { editorType } from '@/typings'
 import Input from '@/components/Input.vue'
-import { ElButton, ElOption, ElSelect } from 'element-plus'
+import { ElOption, ElSelect } from 'element-plus'
 import { getConfig } from '@/api/editor'
-
-interface shapeListType {
-	shapeType: ShapeKeyType
-	config: ShapeConfig
-}
 
 let editor: ShapeEditor
 let needUpdate = false
@@ -163,6 +158,9 @@ const onKeyDown = (e: KeyboardEvent) => {
 	if (e.key === 'Delete') {
 		editor.delSelectShapes()
 	}
+	if (e.key === 'Enter') {
+		editor.addCustomShape()
+	}
 }
 const onKeyUp = (e: KeyboardEvent) => {
 	if (e.key === ' ') {
@@ -268,10 +266,10 @@ onMounted(() => {
 					</div>
 				</div>
 			</div>
-			<div class="menu">上移一层</div>
-			<div class="menu">上移一层</div>
-			<div class="menu">移至顶层</div>
-			<div class="menu">移至底层</div>
+			<div class="menu" @click="editor.changeSelectedShapeLevel('up')">上移一层</div>
+			<div class="menu" @click="editor.changeSelectedShapeLevel('down')">上移一层</div>
+			<div class="menu" @click="editor.changeSelectedShapeLevel('max')">移至顶层</div>
+			<div class="menu" @click="editor.changeSelectedShapeLevel('min')">移至底层</div>
 		</div>
 	</div>
 </template>

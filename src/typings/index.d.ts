@@ -1,4 +1,4 @@
-import { ShapeEditor } from 'shape-editor/editor'
+import { ShapeEditor } from 'shape-editor/dist/editor'
 
 export type editorType = {
 	editor: { value: ShapeEditor }

@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { ShapeEditorConfig } from 'shape-editor/editor'
+import { ShapeEditorConfig } from 'shape-editor/dist/editor'
 
 export const getConfig = () => {
 	return request.get<any, ShapeEditorConfig>('/json/getShapeEditorConfig')

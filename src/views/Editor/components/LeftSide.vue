@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { editorType } from '@/typings'
-import type { operationTypeProps, ShapeKeyType } from 'shape-editor/editor'
+import type { operationTypeProps, ShapeKeyType } from 'shape-editor/dist/editor'
 import Upload from '@/components/Upload.vue'
-import { ElMessage } from 'element-plus'
 
 const { editor: _editor } = inject('shapeEditor') as editorType
 const editor = _editor.value
@@ -19,13 +18,6 @@ const add_ac = (type: ShapeKeyType) => {
 	return addShapeType.value === type
 }
 const switchType = (typeName: operationTypeProps) => {
-	if (typeName === 'customShape') {
-		ElMessage({
-			type: 'info',
-			message: '此功能暂未开放！'
-		})
-		return
-	}
 	editor.operationType = typeName
 	editor.addShapeType = null
 	addShapeType.value = null

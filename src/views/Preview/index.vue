@@ -3,7 +3,7 @@ import { getConfig } from '@/api/editor'
 import { useWindowResize } from '@/hooks/useWindowResize'
 import { useMainStore } from '@/store/main'
 import { ElButton, ElDialog } from 'element-plus'
-import { PreviewEditor } from 'shape-editor/preview'
+import { PreviewEditor } from 'shape-editor/dist/preview'
 import { useRouter } from 'vue-router'
 
 let editor: PreviewEditor

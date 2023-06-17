@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { shapeStyleAll } from 'shape-editor/editor'
+import { shapeStyleAll } from 'shape-editor/dist/editor'
 import Input from './Input.vue'
 
 defineProps<{ item: shapeStyleAll }>()
